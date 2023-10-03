@@ -5,18 +5,11 @@
 const beerDetails = document.querySelector('div.beer-details');
 const beerNav  = document.getElementById('beer-list');
 const beerName = document.getElementById('beer-name');
+const beerImage = document.getElementById('beer-image');
+const beerDescription = document.getElementById('beer-description');
+let beerReviews = document.getElementById('review-list');
 
-
-const init = () =>{
-    
-}
-
-function fetchElement(id){
-
-    
-    const beerImage = document.getElementById('beer-image');
-    const beerDescription = document.getElementById('beer-description');
-    let beerReviews = document.getElementById('review-list');
+function fetchBeer(id=1){    
     
 
     return fetch(`http://localhost:3000/beers/${id}`)
@@ -36,12 +29,7 @@ function fetchElement(id){
 
     });
 
-    // function addReview(list){
-    //     for(const item of list){
-    //         listItem.innerText = item;
-    //         return listItem;
-    //     }
-    // }
+   
 }
 
 function setBeerNav(){
@@ -49,25 +37,43 @@ function setBeerNav(){
     //get the names of each bear
     //create a list and append to the ul
 
-    fetch(`http://localhost:3000/beers`).then(res => res.json())
-    .then(data =>{
-    
+    return fetch(`http://localhost:3000/beers`)
+    .then(res => res.json())
+    .then(data =>{   
 
-    beerNav.innerHTML=""; //clear the Nav list        
-    for(let obj in data){
-        const listItem = document.createElement('li');      
-        
-        listItem.textContent=data[obj].name;
-        beerNav.appendChild(listItem);  
+        beerNav.innerHTML=""; //clear the Nav list        
+        for(let obj in data){
+            const listItem = document.createElement('li');    
+            listItem.textContent=data[obj].name;
+            const beerId = data[obj].id;
+            listItem.id =beerId;           
+           
+            beerNav.appendChild(listItem);  
 
-
-    }    
+        }    
     });
     
 }
 
-fetchElement(1);
-setBeerNav()
+function getBeerDetails(id){    
+    //wait for a click,
+  
+    //add event listener
+    //retreive details of the clicked name
+    //fetchElement(id);
+
+    
+
+
+}
+
+fetchBeer(1);
+setBeerNav();
+
+beerNav.addEventListener('click',event =>{
+    fetchBeer(event.target.id);
+});
+
 
 
 
