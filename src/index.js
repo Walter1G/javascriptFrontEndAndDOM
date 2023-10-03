@@ -68,8 +68,10 @@ beerNav.addEventListener('click',event =>{
 reviewForm.addEventListener('submit',event =>{
     event.preventDefault();
     const listItem = document.createElement('li');  
-    listItem.textContent=document.getElementById('review').value;
-    beerReviews.appendChild(listItem);  
+    const reviewTextArea=document.getElementById('review');
+    listItem.textContent=reviewTextArea.value;
+    beerReviews.appendChild(listItem); 
+    reviewTextArea.value=""; 
     console.log(listItem.textContent);
 });
 
