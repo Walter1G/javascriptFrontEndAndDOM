@@ -8,6 +8,7 @@ const beerName = document.getElementById('beer-name');
 const beerImage = document.getElementById('beer-image');
 const beerDescription = document.getElementById('beer-description');
 let beerReviews = document.getElementById('review-list');
+const reviewForm = document.getElementById('review-form');
 
 function fetchBeer(id=1){    
     
@@ -55,17 +56,7 @@ function setBeerNav(){
     
 }
 
-function getBeerDetails(id){    
-    //wait for a click,
-  
-    //add event listener
-    //retreive details of the clicked name
-    //fetchElement(id);
 
-    
-
-
-}
 
 fetchBeer(1);
 setBeerNav();
@@ -73,6 +64,18 @@ setBeerNav();
 beerNav.addEventListener('click',event =>{
     fetchBeer(event.target.id);
 });
+
+reviewForm.addEventListener('submit',event =>{
+    event.preventDefault();
+    const listItem = document.createElement('li');  
+    listItem.textContent=document.getElementById('review').value;
+    beerReviews.appendChild(listItem);  
+    console.log(listItem.textContent);
+});
+
+
+
+
 
 
 
